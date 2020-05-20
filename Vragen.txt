@@ -1,4 +1,4 @@
-Vul hier je naam in.
+Vul hier je naam in:
 Ben je een jongen/ meisje of anders?
 A.	Jongen
 B.	Meisje
