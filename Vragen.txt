@@ -1,4 +1,4 @@
-Vul hier je naam in.
+Vul hier je naam in:
 Ben je een jongen/ meisje of anders?
 A.	Jongen
 B.	Meisje
@@ -24,7 +24,7 @@ Liever koffie of liever thee?
 A.	Koffie
 B.	Thee
 Stel je kan voor een dag het volgende:
-A.	Iedereens gedachte allemaal lezen zodat je alles van iedereen weet.
+A.	Iedereens gedachte lezen zodat je alles van iedereen weet.
 B.	1 dag lang alles weten wat je maar wilt weten…
 Welke kies je?
 A.	Gedachten lezen
@@ -47,7 +47,7 @@ B.	IJsthee
 Geloof je in liefde op het eerste gezicht?
 A.	Ja
 B.	Nee
-Liever een jaar geen tv (incl. gamen en series kijken erop) of een jaar geen snacks?
+Liever een jaar geen tv of snacks?
 A.	Een jaar geen tv
 B.	Een jaar geen snacks
 Is wereldvrede mogelijk?
