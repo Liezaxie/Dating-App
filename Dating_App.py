@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog, Text
-import os
 import pyodbc
-import os.path
+import numpy as np
+
 
 #Start tkinter en maakt connectie met de SQL Server.
 root = tk.Tk()
@@ -29,44 +29,79 @@ canvas.create_image(30,30, anchor=NW, image=img)
 
 #print(lidnummercounter)
 
-
 def getTextInput():
+    global nogeencounter
     result=textExample.get(1.0, tk.END+"-1c")
     textExample.delete("1.0", "end")
-    #cursor.execute("INSERT INTO persgegevens (voornaam, lidnummer) VALUES('{}','{}')".format(result, lidnummercounter))
-    #conn.commit()
-
-
-
-def buttonA():
-    global vraagcounter
-    global nogeencounter
-    #cursor.execute("INSERT INTO vragen (lidnummer, vraag, antwoord) VALUES('{}','{}','{}')".format(lidnummercounter,vraagcounter,"A"))
-    #conn.commit()
-    vraagcounter += 1
-
-    print(vraagcounter)
+    cursor.execute("INSERT INTO persgegevens (voornaam, lidnummer) VALUES('{}','{}')".format(result, lidnummercounter))
+    conn.commit()
     textExample.delete("1.0","end")
     textExample.insert(tk.END, leesvraag[nogeencounter+1])
     textExample.insert(tk.END, leesvraag[nogeencounter+ 2])
     textExample.insert(tk.END, leesvraag[nogeencounter+ 3])
     nogeencounter += 3
 
+def buttonA():
+    global vraagcounter
+    global nogeencounter
+    cursor.execute("INSERT INTO vragen (lidnummer, vraag, antwoord) VALUES('{}','{}','{}')".format(lidnummercounter,vraagcounter,"A"))
+    conn.commit()
+    vraagcounter += 1
+    if vraagcounter > 22:
+        antwoorden()
+    print(vraagcounter)
+    textExample.delete("1.0","end")
+    if nogeencounter <= 64:
+        textExample.insert(tk.END, leesvraag[nogeencounter+1])
+        textExample.insert(tk.END, leesvraag[nogeencounter +2])
+        textExample.insert(tk.END, leesvraag[nogeencounter +3])
+        nogeencounter += 3
 
 def buttonB():
     global vraagcounter
     global nogeencounter
-    #cursor.execute("INSERT INTO vragen (lidnummer, vraag, antwoord) VALUES('{}','{}','{}')".format(lidnummercounter, vraagcounter,"B"))
-    #conn.commit()
+    cursor.execute("INSERT INTO vragen (lidnummer, vraag, antwoord) VALUES('{}','{}','{}')".format(lidnummercounter, vraagcounter,"B"))
+    conn.commit()
     vraagcounter += 1
     print(vraagcounter)
+    if vraagcounter > 22:
+        antwoorden()
     textExample.delete("1.0", "end")
-    textExample.insert(tk.END, leesvraag[nogeencounter+1])
-    textExample.insert(tk.END, leesvraag[nogeencounter +2])
-    textExample.insert(tk.END, leesvraag[nogeencounter +3])
-    nogeencounter += 3
+    if nogeencounter <= 64:
+        textExample.insert(tk.END, leesvraag[nogeencounter+1])
+        textExample.insert(tk.END, leesvraag[nogeencounter +2])
+        textExample.insert(tk.END, leesvraag[nogeencounter +3])
+        nogeencounter += 3
 
-#def vragen():
+def antwoorden():
+    global lidnummercounter
+    matchArray = np.array([])
+    counterteller = 1
+    lidnummercounter = int(lidnummercounter)
+    cursor.execute("SELECT COUNT (*) FROM vragen where lidnummer = '{}' and antwoord = '{}' ".format(lidnummercounter, "A"))
+    antwoordenAJezelf = cursor.fetchone()[0]
+    print("Dit ben ik zelf" + str(antwoordenAJezelf))
+
+    for lid in range(lidnummercounter):
+        cursor.execute("SELECT COUNT (*) FROM vragen where lidnummer = '{}' and antwoord = '{}' ".format(counterteller, "A"))
+        antwoordenA = cursor.fetchone()[0]
+        counterteller += 1
+        matchArray = np.append(matchArray,antwoordenA)
+        print("wij hebben " + str(antwoordenA))
+
+    print("Dit is de matcharray "+ str(matchArray))
+    searchval = antwoordenAJezelf
+    matches = np.where(matchArray == searchval )[0]
+    print("Dit zijn de lidnummers" + str(matches))
+    for i in range(len(matches)):
+        cursor.execute("SELECT distinct persgegevens.voornaam FROM persgegevens INNER JOIN vragen ON persgegevens.lidnummer = vragen.lidnummer where persgegevens.lidnummer='{}'".format(matches[i]))
+        Jegroteliefde= cursor.fetchone()[0]
+        textExample.delete("1.0", "end")
+        textExample.insert(tk.END, str(Jegroteliefde))
+        print(str(Jegroteliefde))
+        i += 1
+
+
 
 
 
@@ -81,7 +116,3 @@ AntwoordB=tk.Button(root, height=2, width=20, text="B", command=buttonB).place(x
 
 
 root.mainloop()
-
-
-
-
