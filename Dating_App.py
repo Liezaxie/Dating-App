@@ -75,19 +75,20 @@ def buttonB():
 
 def antwoorden():
     global lidnummercounter
-    matchArray = np.array([])
+    matchArray = np.array([1])
     counterteller = 1
     lidnummercounter = int(lidnummercounter)
     cursor.execute("SELECT COUNT (*) FROM vragen where lidnummer = '{}' and antwoord = '{}' ".format(lidnummercounter, "A"))
     antwoordenAJezelf = cursor.fetchone()[0]
     print("Dit ben ik zelf" + str(antwoordenAJezelf))
+    textExample.delete("1.0", "end")
 
     for lid in range(lidnummercounter):
         cursor.execute("SELECT COUNT (*) FROM vragen where lidnummer = '{}' and antwoord = '{}' ".format(counterteller, "A"))
         antwoordenA = cursor.fetchone()[0]
         counterteller += 1
         matchArray = np.append(matchArray,antwoordenA)
-        print("wij hebben " + str(antwoordenA))
+
 
     print("Dit is de matcharray "+ str(matchArray))
     searchval = antwoordenAJezelf
@@ -96,10 +97,11 @@ def antwoorden():
     for i in range(len(matches)):
         cursor.execute("SELECT distinct persgegevens.voornaam FROM persgegevens INNER JOIN vragen ON persgegevens.lidnummer = vragen.lidnummer where persgegevens.lidnummer='{}'".format(matches[i]))
         Jegroteliefde= cursor.fetchone()[0]
-        textExample.delete("1.0", "end")
-        textExample.insert(tk.END, str(Jegroteliefde))
+        textExample.insert(tk.END, Jegroteliefde)
         print(str(Jegroteliefde))
         i += 1
+
+
 
 
 
