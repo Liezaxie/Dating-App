@@ -3,16 +3,13 @@ from tkinter import *
 from tkinter import filedialog, Text
 import pyodbc
 import numpy as np
-
+from connection import *
 
 #Start tkinter en maakt connectie met de SQL Server.
 root = tk.Tk()
 root.title("DatingAAP")
 root.geometry("600x400")
-conn = pyodbc.connect('Driver={SQL Server};'
-                          'Server=DATINGAPP;'
-                          'Database=datingapp;'
-                          'UID=computerland;''PWD=P@ssw0rd')
+conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = conn.cursor()
 cursor.execute("SELECT COUNT (*) FROM persgegevens")
 vraagcounter = 1
@@ -25,7 +22,6 @@ canvas = Canvas(root, width = 290, height = 290)
 canvas.pack()
 img = PhotoImage(file="Tork.gif")
 canvas.create_image(30,30, anchor=NW, image=img)
-
 
 #print(lidnummercounter)
 
@@ -93,20 +89,16 @@ def antwoorden():
     print("Dit is de matcharray "+ str(matchArray))
     searchval = antwoordenAJezelf
     matches = np.where(matchArray == searchval )[0]
+    textMatch = tk.Text(canvas, height=15)
+    textMatch.pack()
     print("Dit zijn de lidnummers" + str(matches))
     for i in range(len(matches)):
         cursor.execute("SELECT distinct persgegevens.voornaam FROM persgegevens INNER JOIN vragen ON persgegevens.lidnummer = vragen.lidnummer where persgegevens.lidnummer='{}'".format(matches[i]))
         Jegroteliefde= cursor.fetchone()[0]
-        textExample.insert(tk.END, Jegroteliefde)
+        textMatch.insert(tk.END, "Je hebt een match met: " + Jegroteliefde + "\n")
         print(str(Jegroteliefde))
         i += 1
-
-
-
-
-
-
-
+    textMatch.insert(tk.END, "\n" + "Je hebt een BONUS match met: Tjerk!!!!")
 
 textExample=tk.Text(root, height= 3)
 textExample.insert(tk.END,leesvraag[nogeencounter])
