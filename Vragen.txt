@@ -1,0 +1,67 @@
+Vul hier je naam in:
+Ben je een jongen/ meisje of anders?
+A.	Jongen
+B.	Meisje
+Wat is je lievelingskleur uit de volgende kleuren:
+A.	Rood 
+B.	Blauw
+Woon je in Helmond?
+A.	Ja
+B.	Nee, gelukkig niet.
+Nu je dit invult, lig je nog in bed?
+A.	Ja
+B.	Nee
+MAC OS of Windows?
+A.	MAC OS
+B.	Windows
+Doe je naast gamen en serie kijken nog wat anders in het leven?
+A.	Jazeker wel
+B.	Nee eigenlijk niet.
+Is deze jonge man ware schoonheid?
+A.	JAAA
+B.	Nee, wtf mate
+Liever koffie of liever thee?
+A.	Koffie
+B.	Thee
+Stel je kan voor een dag het volgende:
+A.	Iedereens gedachte lezen zodat je alles van iedereen weet.
+B.	1 dag lang alles weten wat je maar wilt weten…
+Welke kies je?
+A.	Gedachten lezen
+B.	Alles weten
+Netflix of Plex?
+A.	Netflix
+B.	Plex
+De filmreeks The Hunger Games of Harry Potter?
+A.	The Hunger Games
+B.	Harry Potter 
+Liever de zomer of de winter?
+A.	Zomer 
+B.	Winter
+Oliebollen of Appelflappen?
+A.	Oliebollen
+B.	Appelflappen
+IJskoffie of ijsthee?
+A.	IJskoffie
+B.	IJsthee
+Geloof je in liefde op het eerste gezicht?
+A.	Ja
+B.	Nee
+Liever een jaar geen tv of snacks?
+A.	Een jaar geen tv
+B.	Een jaar geen snacks
+Is wereldvrede mogelijk?
+A.	Ja
+B.	Nee, niet zolang Trump de macht heeft
+Voel je je jonger dan dat je daadwerkelijk bent?
+A.	Ja
+B.	Nee
+Zou je gelukkig kunnen zijn zonder geld?
+A.	Ja
+B.	Nee
+Ben je linkshandig of rechtshandig?
+A.	Linkshandig
+B.	Rechtshandig
+Zou je 10 jaar korter willen leven in ruil om rijk te zijn?
+A.	Ja
+B.	Nee
